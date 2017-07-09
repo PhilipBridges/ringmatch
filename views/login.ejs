@@ -1,0 +1,27 @@
+<% include partials/header %>
+
+  <div class="container">
+    <div class="row">
+        <div class="container">
+          <div class="well">
+            <h3 style="text-align: center;">Log In</h3>
+            <div style="width: 20%; margin: 25px auto">
+            <form action="/login" method="POST">
+              <div class="form-group>">
+                    <input class="form-control" type="text" name="username" placeholder="username">
+                  </div>
+                  <div class="form-group>">
+                    <input class="form-control" type="text" name="password" placeholder="password">
+                  </div>
+                  <div class="form-group>">
+                    <button class="btn btn-lg btn-primary btn-block">Log In</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </form>
+      
+  </div>
+</div>
+<% include partials/footer %>

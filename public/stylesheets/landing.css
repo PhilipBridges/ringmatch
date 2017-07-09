@@ -1,0 +1,30 @@
+body {
+  font-family: 'Volkhov', serif;
+}
+
+#botnav {
+  margin: 20px;
+}
+
+.tawg {
+  color: purple;
+}
+
+img {
+  height: 30%;
+  width: 30%;
+  margin-top: 10px;
+  border-radius: 15px;
+}
+
+#dexList {
+  padding-bottom: 20px;
+  padding-top: 30px;
+  
+}
+
+#dexList:hover {
+    border: 2px solid black;
+    margin: -2px;
+    border-radius: 10px;
+}

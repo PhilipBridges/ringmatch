@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="row">
+    <div class="well">
+    <h1 style="text-align: center;">Create Your Profile</h1>
+      <div style="width: 20%; margin: 20px auto;">
+        <form class="form-horizontal" action="/profiles" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="name">
+          </div>
+          <div class="form-group">
+            <input type="text" name="bio" placeholder="bio">
+          </div>
+            <label class="dropdown" for="form-group">Game</label>
+            <br>
+            <select class="drop-down" name="game">
+              <option value="DOTA2">DOTA2</option>
+              <option value="Counterstrike">Counterstrike</option>
+              <option value="LeagueofLegends">League of Legends</option>
+            </select>
+          <div class="form-group" class="center-block">
+          <button style="margin-top: 15px; margin-left: 35px" class="btn btn-primary btn-lg btn-success">Submit</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  
+
+
+<% include ../partials/footer %>

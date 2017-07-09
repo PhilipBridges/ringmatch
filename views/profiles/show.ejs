@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+        <p class="lead">RingMatch</p>
+        <div id="showSel" class="list-group">
+            <li class="list-group-item"> <h2><%= profile.name %></h2></li>
+            <div class="container">
+              
+            <img  src="/img/<%=profile.game.gameName%>.jpg">
+            
+        </div>
+            <li class="list-group-item"><%= profile.bio %></li>
+            </div>
+        </div>
+    </div>
+    <div class="well">
+      <div class="text-right">
+        <button href="/profiles/<%=profile.id%>/comments/new" class="btn btn-success">Comment</button>
+      </div>
+    </div>
+    <% if(currentUser && profile.author.id.equals(currentUser._id)){ %>
+    <a class="btn btn-xs btn-warning" href="/profiles/<%=profile._id%>/edit">Edit</a>
+    <form id="delete-form" action="/profiles/<%=profile.id%>?_method=DELETE" method="POST">
+      <button class="btn btn-xs btn-danger">Delete</button>
+    </form>
+    <% } %>
+</div>
+
+
+<% include ../partials/footer %>
+

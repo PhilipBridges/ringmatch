@@ -1,0 +1,29 @@
+<% include partials/header %>
+
+  <div class="container col-lg-12">
+    <div class="row">
+        <div class="container">
+          <div class="well">
+            <h3 style="text-align: center;">Register</h3>
+            <div style="width: 20%; margin: 25px auto">
+            <form action="/register" method="POST">
+              <div class="form-group>">
+                    <input class="form-control" type="text" name="username" placeholder="username">
+                  </div>
+                  <div class="form-group>">
+                    <input class="form-control" type="text" name="password" placeholder="password">
+                  </div>
+                  <div class="form-group>">
+                    <button class="btn btn-lg btn-primary btn-block">Log In</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </form>
+      <p style="text-align: center;">When you register, you'll be able to create a profile to show what you have to offer to other players.
+      <br> You'll be able to join teams, or create your own to compete in tournaments.
+      </p>
+  </div>
+</div>
+<% include partials/footer %>
