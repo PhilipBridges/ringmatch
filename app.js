@@ -52,7 +52,7 @@ app.use(function(req, res, next){
 
 app.use("/", index);
 app.use("/profiles", profileRoutes)
-app.use("/comments", commentRoutes)
+app.use("/profiles/:id/comments", commentRoutes)
 
 app.listen(process.env.PORT, process.env.IP, function(){
   console.log("Server has started");

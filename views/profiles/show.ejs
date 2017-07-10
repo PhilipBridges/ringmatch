@@ -17,9 +17,14 @@
     </div>
     <div class="well">
       <div class="text-right">
-        <button href="/profiles/<%=profile.id%>/comments/new" class="btn btn-success">Comment</button>
+        <a class="btn btn-success" href="/profiles/<%=profile._id%>/comments/new">Add New Comment</a>
       </div>
     </div>
+    <% profile.comments.forEach(function(comment){%>
+    <p>
+      <strong><%=comment.author%></strong>
+    </p>
+    <% }) %>
     <% if(currentUser && profile.author.id.equals(currentUser._id)){ %>
     <a class="btn btn-xs btn-warning" href="/profiles/<%=profile._id%>/edit">Edit</a>
     <form id="delete-form" action="/profiles/<%=profile.id%>?_method=DELETE" method="POST">
