@@ -21,8 +21,17 @@
       </div>
     </div>
     <% profile.comments.forEach(function(comment){%>
-    <p>
-      <strong><%=comment.author%></strong>
+    <div class="row">
+      <div class="col-md-12">
+        <strong><%= profile.author.username%></strong>
+        <p id="commentDate"><%= comment.date%> @ <%= comment.time%>
+        </p>
+        <div id="commentText" class="well">
+          <%=comment.text%>
+        </div>
+      </div>
+    </div>
+      
     </p>
     <% }) %>
     <% if(currentUser && profile.author.id.equals(currentUser._id)){ %>

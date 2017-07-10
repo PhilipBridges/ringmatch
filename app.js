@@ -10,7 +10,9 @@ var express = require("express"),
     LocalStrategy = require('passport-local').Strategy,
     index = require("./routes/index"),
     User = require('./models/user'),
-    Profile = require("./models/profile");
+    Profile = require("./models/profile"),
+    moment = require('moment');
+    moment().format();
     
     // Required routes
     var profileRoutes = require("./routes/profiles");
