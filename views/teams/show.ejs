@@ -4,25 +4,25 @@
   <div class="row">
     <div class="col-md-3">
         <div id="showSel" class="list-group">
-            <li class="list-group-item"> <h2><%= profile.name %></h2></li>
+            <li class="list-group-item"> <h2><%= team.name %></h2></li>
             <div class="container">
               
-            <img  src="/img/<%=profile.game.gameImg%>.jpg">
+            <img  src="/img/<%=team.game.gameImg%>.jpg">
             
         </div>
-            <li class="list-group-item"><%= profile.bio %></li>
+            <li class="list-group-item"><%= team.bio %></li>
             </div>
         </div>
     </div>
     <div>
       <div>
-        <a id="addComment" class="btn btn-success" href="/profiles/<%=profile._id%>/comments/new">Add New Comment</a>
+        <a id="addComment" class="btn btn-success" href="/teams/<%=team._id%>/comments/new">Add New Comment</a>
       </div>
     </div>
-    <% profile.comments.forEach(function(comment){%>
+    <% team.comments.forEach(function(comment){%>
     <div class="row">
       <div class="col-md-12">
-        <strong><%= profile.author.username%></strong>
+        <strong><%= team.author.username%></strong>
         <p id="commentDate"><%= comment.date%> @ <%= comment.time%>
         </p>
         <div id="commentText" class="well">
@@ -33,9 +33,9 @@
       
     </p>
     <% }) %>
-    <% if(currentUser && profile.author.id.equals(currentUser._id)){ %>
-    <a class="btn btn-xs btn-warning" href="/profiles/<%=profile._id%>/edit">Edit</a>
-    <form id="delete-form" action="/profiles/<%=profile.id%>?_method=DELETE" method="POST">
+    <% if(currentUser && team.author.id.equals(currentUser._id)){ %>
+    <a class="btn btn-xs btn-warning" href="/team/<%=team._id%>/edit">Edit</a>
+    <form id="delete-form" action="/teams/<%=team.id%>?_method=DELETE" method="POST">
       <button class="btn btn-xs btn-danger">Delete</button>
     </form>
     <% } %>

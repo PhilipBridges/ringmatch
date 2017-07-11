@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user.js');
+var middleware = require("../middleware")
 
 router.get("/", function(req, res){
   res.render("landing");
@@ -11,8 +12,13 @@ router.get("/about", function(req, res){
     res.render("about");
 });
 
-router.get("/register", function(req, res){
+router.get("/register", function(req, res, next){
+    if(req.isAuthenticated()){
+    req.flash("error", "You are already logged in");
+    res.redirect("/");
+    } else {
     res.render("register");
+    }
 });
 
 router.get("/login", function(req,res){

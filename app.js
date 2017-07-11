@@ -17,6 +17,7 @@ var express = require("express"),
     // Required routes
     var profileRoutes = require("./routes/profiles");
     var commentRoutes = require("./routes/comments")
+    var teamRoutes = require("./routes/teams")
 
 var promise = mongoose.connect('mongodb://localhost/ringmatch', {
   useMongoClient: true,
@@ -54,7 +55,9 @@ app.use(function(req, res, next){
 
 app.use("/", index);
 app.use("/profiles", profileRoutes)
+app.use("/teams", teamRoutes)
 app.use("/profiles/:id/comments", commentRoutes)
+
 
 app.listen(process.env.PORT, process.env.IP, function(){
   console.log("Server has started");

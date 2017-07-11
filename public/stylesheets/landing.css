@@ -38,3 +38,9 @@ img {
   background-color: rgba(55,95,25,.1);
   border-radius: 99%;
 }
+
+#addComment {
+  margin: auto;
+  display: block;
+  width: 15%;
+}

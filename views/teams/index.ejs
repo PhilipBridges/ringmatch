@@ -1,0 +1,32 @@
+<% include ../partials/header %> 
+
+<div class="container">
+   <header class="jumbotron">
+       <div class="container">
+           <p style="text-align: center;">
+              <a class="btn btn-primary btn-large" href="/teams/new">Create New Team</a>
+           </p>
+       </div>
+   </header>
+   <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+      <% teams.forEach(function(team){ %>
+          <div class="col-md-3 col-sm-6">
+              <div id="dexList">
+                  <h4><%= team.name %></h4>
+                 <%= team.game.gameName %>
+                 <div class="thumbnail">
+                   <img src="/img/<%=team.game.gameName%>.jpg">
+                 </div>
+                 <div class="caption">
+                   <p><%= team.bio %></p>
+                 </div>
+                 <p>
+                  <a href="/teams/<%= team._id %>" class="btn btn-primary">More Info</a>
+                 </p>
+              </div>
+          </div>
+      <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>

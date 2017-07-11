@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
     
 
-var profileSchema = new Schema({
+var teamSchema = new Schema({
   name: String,
   game: {
         gameName: String,
@@ -23,4 +23,4 @@ var profileSchema = new Schema({
     }]
 });
 
-module.exports = mongoose.model('Profile', profileSchema);
+module.exports = mongoose.model('Team', teamSchema);
