@@ -1,16 +1,18 @@
 var express = require("express");
-var router  = express.Router();
+var router  = express.Router({mergeParams: true});
 var Profile = require("../models/profile");
 var middleware = require("../middleware")
+var TRequest = require("../models/teamRequest")
+var User = require("../models/user")
 
 
 // profile index
-router.get("/", function(req, res){
+router.get("/", middleware.findUser, function(req, res){
     Profile.find({}, function(err, allProfiles){ 
         if(err){
             console.log(err);
         } else {
-            res.render("profiles/index",{profiles:allProfiles});
+            res.render("profiles/index",{profiles:allProfiles, user: currentUser});
         }
     });
 });
@@ -23,19 +25,21 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         gameName: req.body.game,
         gameImg: req.body.game
     }
-    console.log(game)
+    var user = User.findById(req.user.id)
     var bio = req.body.bio;
     var author = {
         id: req.user._id,
         username: req.user.username
     }
     var newProfile = {name:name, game:game, bio:bio, author:author}
-    Profile.create(newProfile, function(err, newlyCreated){
+    Profile.create(newProfile, function(err, profile){
         if(err){
             console.log(err)
+            req.flash("error", "You already have a profile")
         } else {
-            console.log(newlyCreated)
-            res.redirect("/profiles")
+          User.findById(req.user.id).populate("profile").exec
+          console.log(profile)
+          res.redirect("/profiles")
         }
      
        
@@ -51,11 +55,9 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 // profile show page
 router.get("/:id", function(req, res){
     Profile.findById(req.params.id).populate("comments").exec(function(err, foundProfile){
-      console.log(req.body.comments)
         if(err){
             console.log(err);
         } else {
-            console.log(foundProfile)
             res.render("profiles/show", {profile: foundProfile});
         }
     });
@@ -90,5 +92,40 @@ router.delete("/:id",middleware.checkOwnership, function(req, res){
       }
    });
 });
+
+// ADD PLAYER PAGE
+router.get("/:id/add", middleware.isLoggedIn, function(req, res){
+  Profile.findById(req.params.id, function(err, profile){
+    if(err){
+      console.log(req.params.id)
+    } else {
+      res.render("profiles/add", {profile: profile});
+    }
+  })
+});
+
+// add player post
+router.post("/:id/add", middleware.isLoggedIn, function(req, res){
+  User.findById(req.user.id, function(err, user){
+    if(err){
+      console.log("INIT" + err)
+      res.redirect("/profiles")
+    } else {
+      TRequest.create(req.body.request, function(err, request){
+        if(err){
+          console.log("CREATE" + err)
+        } else {
+          request.author.id = req.user.id
+          request.author.username = req.user.username
+          request.save()
+          user.requests.push(request)
+          user.save()
+          req.flash("success", "Request sent.");
+          res.redirect('/profiles/');
+        }
+      })
+    }
+  })
+})
 
 module.exports = router;

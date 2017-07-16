@@ -1,5 +1,5 @@
 var express = require("express");
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 var passport = require('passport');
 var User = require('../models/user.js');
 var middleware = require("../middleware")
@@ -39,7 +39,7 @@ router.post("/register", function(req, res){
             return res.render("register");
         }
         passport.authenticate("local")(req, res, function(){
-           res.redirect("/"); 
+           res.render("profiles/new", {user: newUser }); 
         });
     });
 });
@@ -49,5 +49,19 @@ router.get("/logout", function(req, res){
    req.flash("success", "LOGGED YOU OUT!");
    res.redirect("/");
 });
+
+router.get("/:id/account", middleware.isLoggedIn, function(req, res){
+  if(req.isAuthenticated){
+    User.findById(req.user.id).populate("requests").exec(function(err, foundUser){
+      if(err){
+        console.log(err);
+      } else {
+        res.render("account", {user: foundUser})
+      }
+    })
+  } else {
+    req.flash("error", "You need to log in")
+  }
+})
 
 module.exports = router

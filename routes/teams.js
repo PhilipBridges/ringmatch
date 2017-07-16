@@ -35,8 +35,6 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             console.log(newlyCreated)
             res.redirect("/teams")
         }
-     
-       
    });
 });
 

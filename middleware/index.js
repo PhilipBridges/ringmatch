@@ -1,15 +1,25 @@
 var Profile = require("../models/profile");
-// var Comment = require("../models/comment");
+var User = require("../models/user");
 
-// all the middleare goes here
+
 var middlewareObj = {};
 
 middlewareObj.isLoggedIn = function(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    req.flash("error", "You need to be logged in to do that");
-    res.redirect("/login");
+  if(req.isAuthenticated()){
+      return next();
+  }
+  req.flash("error", "You need to be logged in to do that");
+  res.redirect("/login");
+}
+
+middlewareObj.findUser = function(req, res, next) {
+  if(req.isAuthenticated()){
+    currentUser = req.user
+    next();
+  } else {
+    currentUser = undefined
+   next()
+   }
 }
 
 middlewareObj.checkOwnership = function(req, res, next) {
