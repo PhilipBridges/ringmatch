@@ -9,11 +9,8 @@ var tRequestSchema = mongoose.Schema({
     date : {type: String, default: date},
     time: {type: String, default: time},
     author: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
-        },
-        username: String,    
+        id: String,
+        username: String  
     }
 });
 

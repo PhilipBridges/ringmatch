@@ -3,7 +3,7 @@
 <div class="row">
     <h2 style="text-align: center;">Requesting <%= profile.name %></h2>
     <div style="width: 30%; margin: 20px auto;">
-      <form action="/profiles/<%= profile.id %>/add" method="POST">
+      <form action="/profiles/<%= profile.author.id %>/add" method="POST">
         <div class="form-group">
           <input class="form-control" type="text" name="request[text]" placeholder="...">
         </div>

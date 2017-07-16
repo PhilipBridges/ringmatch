@@ -59,6 +59,7 @@ router.get("/:id", function(req, res){
             console.log(err);
         } else {
             res.render("profiles/show", {profile: foundProfile});
+            console.log(foundProfile.author)
         }
     });
 });
@@ -106,20 +107,22 @@ router.get("/:id/add", middleware.isLoggedIn, function(req, res){
 
 // add player post
 router.post("/:id/add", middleware.isLoggedIn, function(req, res){
-  User.findById(req.user.id, function(err, user){
+  User.findById(req.params.id, function(err, user){
     if(err){
       console.log("INIT" + err)
       res.redirect("/profiles")
     } else {
+      console.log(user)
       TRequest.create(req.body.request, function(err, request){
         if(err){
           console.log("CREATE" + err)
         } else {
-          request.author.id = req.user.id
+          console.log(request)
+          request.author.id = req.user._id
           request.author.username = req.user.username
-          request.save()
           user.requests.push(request)
           user.save()
+          console.log(request)
           req.flash("success", "Request sent.");
           res.redirect('/profiles/');
         }
