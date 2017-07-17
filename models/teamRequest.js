@@ -8,10 +8,14 @@ var tRequestSchema = mongoose.Schema({
     text: String,
     date : {type: String, default: date},
     time: {type: String, default: time},
+    profileid: String,
     author: {
-        id: String,
-        username: String  
+      id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+      },
+      username: String
     }
-});
+    });
 
 module.exports = mongoose.model("TRequest", tRequestSchema);

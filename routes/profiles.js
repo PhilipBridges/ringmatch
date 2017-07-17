@@ -25,7 +25,6 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         gameName: req.body.game,
         gameImg: req.body.game
     }
-    var user = User.findById(req.user.id)
     var bio = req.body.bio;
     var author = {
         id: req.user._id,
@@ -117,9 +116,10 @@ router.post("/:id/add", middleware.isLoggedIn, function(req, res){
         if(err){
           console.log("CREATE" + err)
         } else {
-          console.log(request)
+          request.profileid = req.params.id
           request.author.id = req.user._id
           request.author.username = req.user.username
+          request.save()
           user.requests.push(request)
           user.save()
           console.log(request)
