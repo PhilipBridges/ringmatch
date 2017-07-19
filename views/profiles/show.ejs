@@ -2,15 +2,11 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-        <div id="showSel" class="list-group">
-            <li class="list-group-item"> <h2><%= profile.name %></h2></li>
-            <div class="container">
-              
-            <img  src="/img/<%=profile.game.gameImg%>.jpg">
-            
-        </div>
+    <div id="showSel" class="col-md-3">
+        <div class="list-group">
+            <li class="list-group-item"> <h3><%= profile.name %></h3></li>
             <li class="list-group-item"><%= profile.bio %></li>
+            <img id="gameImg" class="list-group-item" src="/img/<%=profile.game.gameImg%>.jpg">
             </div>
         </div>
     </div>

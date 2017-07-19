@@ -58,7 +58,6 @@ router.get("/:id", function(req, res){
             console.log(err);
         } else {
             res.render("profiles/show", {profile: foundProfile});
-            console.log(foundProfile.author)
         }
     });
 });
@@ -84,6 +83,7 @@ router.put("/:id", middleware.checkOwnership, function(req, res){
 });
 
 router.delete("/:id",middleware.checkOwnership, function(req, res){
+  
    Profile.findByIdAndRemove(req.params.id, function(err){
       if(err){
         res.redirect("/profiles");
@@ -95,6 +95,7 @@ router.delete("/:id",middleware.checkOwnership, function(req, res){
 
 // ADD PLAYER PAGE
 router.get("/:id/add", middleware.isLoggedIn, function(req, res){
+  console.log(req.user.team)
   Profile.findById(req.params.id, function(err, profile){
     if(err){
       console.log(req.params.id)
@@ -116,8 +117,9 @@ router.post("/:id/add", middleware.isLoggedIn, function(req, res){
         if(err){
           console.log("CREATE" + err)
         } else {
-          request.profileid = req.params.id
-          request.author.id = req.user._id
+          request.team.name = req.user.team
+          console.log(req.user.team)
+          request.team.username = req.user._username
           request.author.username = req.user.username
           request.save()
           user.requests.push(request)

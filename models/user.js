@@ -14,6 +14,10 @@ var UserSchema = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Profile",
       // validate: [arrayLimit, '{PATH} exceeds the limit of 1']
+  },
+  team: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Team",
   }
 });
 

@@ -1,9 +1,21 @@
 <% include ../partials/header %>
 
   <div class="row">
-    <h2 style="text-align: center;">Commenting on <%= profile.name %></h2>
+    <% if (typeof profile.name !== 'undefined'){ %>
+   <h2 style="text-align: center;">Commenting on <%= profile.name %></h2>
+    <% } else {%>
+    <% if (typeof team.name !== 'undefined'){ %>
+    <h2 style="text-align: center;">Commenting on <%= team.name %></h2>
+    <% } %>
+    <% } %>
     <div style="width: 30%; margin: 20px auto;">
+    <% if (typeof profile.name !== 'undefined'){ %>
       <form action="/profiles/<%= profile._id %>/comments" method="POST">
+    <% } else {%>
+    <% if (typeof team.name !== 'undefined'){ %>
+    <form action="/teams/<%= team._id %>/comments" method="POST">
+      <% } %>
+      <% } %>
         <div class="form-group">
           <input class="form-control" type="text" name="comment[text]" placeholder="...">
         </div>
@@ -13,6 +25,7 @@
       </form>
     </div>
   </div>
+  
 
 
 <% include ../partials/footer %>

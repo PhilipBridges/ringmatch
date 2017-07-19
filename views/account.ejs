@@ -6,12 +6,17 @@
 <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <strong><%= request.author %></strong>
+        <strong><%= request.author.username %></strong>
         <p id="reqDate"><%= request.date%> @ <%= request.time%>
         </p>
         <div id="reqText" class="well">
-          <%=request.text%>
+          <p><%=request.text%></p>
+          <div id="requestBtn" class="row">
+          <a class="btn btn-success btn-sm" role="button">Confirm</a>
+          <a class="btn btn-danger btn-sm" role="button">Ignore</a>
         </div>
+        </div>
+        
       </div>
     </div>
     </p>

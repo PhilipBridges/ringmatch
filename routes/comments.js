@@ -10,7 +10,8 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
     if(err){
       console.log(req.params.id)
     } else {
-      res.render("comments/new", {profile: profile});
+      res.render("comments/new", {profile: profile, team:""});
+      console.log(typeof profile)
     }
   })
 });

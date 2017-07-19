@@ -52,7 +52,7 @@ router.get("/logout", function(req, res){
 
 router.get("/:id/account", middleware.isLoggedIn, function(req, res){
   if(req.isAuthenticated){
-    User.findById(req.user.id).populate("requests").exec(function(err, foundUser){
+    User.findById(req.user.id).populate("requests team").exec(function(err, foundUser){
       if(err){
         console.log(err);
       } else {

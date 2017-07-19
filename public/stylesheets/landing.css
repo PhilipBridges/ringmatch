@@ -10,9 +10,9 @@ body {
   color: purple;
 }
 
-img {
-  height: 30%;
-  width: 30%;
+#gameImg {
+  height: auto;
+  max-width: 100%;
   margin-top: 10px;
   border-radius: 15px;
 }
@@ -46,5 +46,15 @@ img {
 }
 
 h2 {
+  text-align: center;
+}
+
+#requestBtn {
+  margin-left: auto;
+}
+
+#showSel {
+  background-color: rgba(55,95,25,.3);
+  margin: 5px;
   text-align: center;
 }

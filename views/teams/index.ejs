@@ -11,11 +11,11 @@
    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
       <% teams.forEach(function(team){ %>
           <div class="col-md-3 col-sm-6">
+            <h4><%= team.name %></h4>
               <div id="dexList">
-                  <h4><%= team.name %></h4>
                  <%= team.game.gameName %>
                  <div class="thumbnail">
-                   <img src="/img/<%=team.game.gameName%>.jpg">
+                   <img id="gameImg" src="/img/<%=team.game.gameName%>.jpg">
                  </div>
                  <div class="caption">
                    <p><%= team.bio %></p>
