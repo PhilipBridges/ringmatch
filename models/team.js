@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
     
-
 var teamSchema = new Schema({
   name: String,
   game: {
@@ -25,7 +24,7 @@ var teamSchema = new Schema({
     players: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Team"
+      ref: "User"
     }]
 });
 

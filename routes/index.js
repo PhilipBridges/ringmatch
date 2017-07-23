@@ -3,6 +3,8 @@ var router = express.Router({mergeParams: true});
 var passport = require('passport');
 var User = require('../models/user.js');
 var middleware = require("../middleware")
+var Team = require("../models/team")
+var TRequest = require("../models/teamRequest")
 
 router.get("/", function(req, res){
   res.render("landing");
@@ -56,7 +58,6 @@ router.get("/:id/account", middleware.isLoggedIn, function(req, res){
       if(err){
         console.log(err);
       } else {
-        console.log(foundUser)
         res.render("account", {user: foundUser})
       }
     })
@@ -64,5 +65,40 @@ router.get("/:id/account", middleware.isLoggedIn, function(req, res){
     req.flash("error", "You need to log in")
   }
 })
+
+router.post("/:id/account/confirm", middleware.isLoggedIn, function(req, res){
+  User.findById(req.user.id, function(err, user){
+    var team = req.body.confirm
+    if(err){
+      console.log(err)
+    } else {
+      user.update({ $set: { team: team }}).exec();
+      user.save()
+      Team.findById(req.user.team, function(err, foundTeam){
+        if(err){
+          console.log(err)
+        } else {
+          foundTeam.players.push(user.id)
+          foundTeam.save()
+          console.log(foundTeam)
+        }
+      })
+    }
+    res.redirect("/")
+  })
+})
+
+router.delete("/:id/account/confirm/:request", middleware.isLoggedIn, function(req, res){
+  User.findById(req.params.id, function(err, user){
+    console.log(req.params.request)
+      if(err){
+          console.log("PROBLEM!");
+      } else {
+        user.requests.pull(req.params.request)
+        user.save()
+        res.render("index")
+      }
+    })
+});
 
 module.exports = router

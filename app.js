@@ -10,9 +10,7 @@ var express = require("express"),
     LocalStrategy = require('passport-local').Strategy,
     index = require("./routes/index"),
     User = require('./models/user'),
-    Profile = require("./models/profile"),
-    moment = require('moment');
-    moment().format();
+    Profile = require("./models/profile")
     
     // Required routes
     var profileRoutes = require("./routes/profiles");
@@ -23,8 +21,6 @@ var promise = mongoose.connect('mongodb://localhost/ringmatch', {
   useMongoClient: true,
 });
 
-
-useMongoClient: true,
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));

@@ -1,7 +1,7 @@
 <% include partials/header %>
 
+<%= user.team %>
 <h2><%= currentUser.username%>'s account</h2>
-
 <% user.requests.forEach(function(request){%>
 <div class="container">
     <div class="row">
@@ -11,12 +11,18 @@
         </p>
         <div id="reqText" class="well">
           <p><%=request.text%></p>
+          <p> From <%= request.team.name %></p>
           <div id="requestBtn" class="row">
-          <a class="btn btn-success btn-sm" role="button">Confirm</a>
-          <a class="btn btn-danger btn-sm" role="button">Ignore</a>
+             <form action="/<%=user.id%>/account/confirm" method="POST">
+             <input type="hidden" name="confirm" value="<%=request.team.id%>">
+             <button style="margin-top: 15px; margin-left: 35px" class="btn btn-primary btn-lg btn-success">Submit</button>
+          </form>
+          <form action="/<%=user._id%>/account/confirm/<%=request._id%>?_method=DELETE" method="POST">
+             <input type="hidden" name="confirm" value="<%=request.team.id%>">
+             <button style="margin-top: 15px; margin-left: 35px" class="btn btn-primary btn-lg btn-danger">Ignore</button>
+          </form>
         </div>
         </div>
-        
       </div>
     </div>
     </p>

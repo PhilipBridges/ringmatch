@@ -23,6 +23,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 // Create new team
 router.post("/", middleware.isLoggedIn, function(req, res){
     // get data to post team
+    var user = req.user
     var name = req.body.name;
     var game = {
         gameName: req.body.game,
@@ -38,10 +39,12 @@ router.post("/", middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err)
         } else {
-          team.players.id = req.user._id
-          team.players.username = req.user.username
+          team.name = name
+          team.players.id = req.user.id
+          team.players.push(user)
           team.save()
-          team.players.push(team)
+          user.update({ $set: { team: team }}).exec();
+          user.save()
           console.log(team)
           res.redirect("/teams")
         }

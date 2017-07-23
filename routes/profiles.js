@@ -4,6 +4,7 @@ var Profile = require("../models/profile");
 var middleware = require("../middleware")
 var TRequest = require("../models/teamRequest")
 var User = require("../models/user")
+var Team = require("../models/team")
 
 
 // profile index
@@ -63,14 +64,14 @@ router.get("/:id", function(req, res){
 });
 
 // EDIT ROUTE
-router.get("/:id/edit", middleware.checkOwnership, function(req, res){
+router.get("/:id/edit", middleware.checkProfileOwnership, function(req, res){
     Profile.findById(req.params.id, function(err, foundProfile){
         res.render("profiles/edit", {profile: foundProfile});
     });
 });
 
 // UPDATE ROUTE
-router.put("/:id", middleware.checkOwnership, function(req, res){
+router.put("/:id", middleware.checkProfileOwnership, function(req, res){
     // find and update the correct profile
     Profile.findByIdAndUpdate(req.params.id, req.body.profile, function(err, updatedProfile){
        if(err){
@@ -82,7 +83,7 @@ router.put("/:id", middleware.checkOwnership, function(req, res){
     });
 });
 
-router.delete("/:id",middleware.checkOwnership, function(req, res){
+router.delete("/:id",middleware.checkProfileOwnership, function(req, res){
   
    Profile.findByIdAndRemove(req.params.id, function(err){
       if(err){
@@ -112,21 +113,24 @@ router.post("/:id/add", middleware.isLoggedIn, function(req, res){
       console.log("INIT" + err)
       res.redirect("/profiles")
     } else {
-      console.log(user)
       TRequest.create(req.body.request, function(err, request){
         if(err){
           console.log("CREATE" + err)
         } else {
-          request.team.name = req.user.team
-          console.log(req.user.team)
-          request.team.username = req.user._username
+          Team.findById(req.user.team, function(err, foundTeam){
+            if(err){
+              console.log(err)
+            }
           request.author.username = req.user.username
+          request.team.id = foundTeam.id
+          request.team.name = foundTeam.name
           request.save()
           user.requests.push(request)
           user.save()
           console.log(request)
           req.flash("success", "Request sent.");
           res.redirect('/profiles/');
+          })
         }
       })
     }

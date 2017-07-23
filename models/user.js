@@ -16,9 +16,9 @@ var UserSchema = new Schema({
       // validate: [arrayLimit, '{PATH} exceeds the limit of 1']
   },
   team: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Team",
-  }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Team"
+      },
 });
 
 // function arrayLimit(val) {
@@ -26,9 +26,5 @@ var UserSchema = new Schema({
 // }
 
 UserSchema.plugin(passportLocalMongoose);
-
-
-
-
 
 module.exports = mongoose.model('User', UserSchema);
