@@ -52,7 +52,6 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 });
 
 
-
 // TEAM SHOW PAGE
 router.get("/:id", function(req, res){
   Team.findById(req.params.id).populate("players comments").exec(function(err, foundTeam){
