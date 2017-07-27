@@ -66,25 +66,31 @@ router.get("/:id/account", middleware.isLoggedIn, function(req, res){
   }
 })
 
-router.post("/:id/account/confirm", middleware.isLoggedIn, function(req, res){
-  User.findById(req.user.id, function(err, user){
-    var team = req.body.confirm
+router.post("/:id/account/confirm/:request", middleware.isLoggedIn, function(req, res){
+  User.findById(req.params.id, function(err, user){
+    var reqTeam = req.body.confirm
     if(err){
       console.log(err)
     } else {
-      user.update({ $set: { team: team }}).exec();
-      user.save()
-      Team.findById(req.user.team, function(err, foundTeam){
+      TRequest.findById(req.params.request, function(err, foundRequest){
         if(err){
           console.log(err)
         } else {
-          foundTeam.players.push(user.id)
-          foundTeam.save()
-          console.log(foundTeam)
+          user.update({ $set: { team: foundRequest.team.id, teamname: foundRequest.team.name }}).exec();
+          user.requests.pull(req.params.request)
+          user.save()
+          Team.findById(req.user.team, function(err, newTeam){
+            if(err){
+              console.log(err)
+            } else {
+            newTeam.players.push(req.user)
+            newTeam.save() 
+            }
+          })
         }
-      })
+      }) 
     }
-    res.redirect("/")
+    res.redirect("back")
   })
 })
 
@@ -96,7 +102,7 @@ router.delete("/:id/account/confirm/:request", middleware.isLoggedIn, function(r
       } else {
         user.requests.pull(req.params.request)
         user.save()
-        res.render("index")
+        res.render("back")
       }
     })
 });

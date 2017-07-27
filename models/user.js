@@ -19,6 +19,12 @@ var UserSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Team"
       },
+  teamname: {
+    type: mongoose.Schema.Types.String,
+    ref: "Team",
+    default: ""
+  },
+  
 });
 
 // function arrayLimit(val) {

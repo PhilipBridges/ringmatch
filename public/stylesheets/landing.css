@@ -2,8 +2,17 @@ body {
   font-family: 'Volkhov', serif;
 }
 
+#navbar {
+  margin-bottom: 50px;
+}
+
 #botnav {
   margin: 20px;
+}
+
+#crumb {
+  width: 350px;
+  display: block;
 }
 
 .tawg {
@@ -58,3 +67,15 @@ h2 {
   margin: 5px;
   text-align: center;
 }
+
+/*ACCOUNT PAGE */
+
+#userTeam {
+  text-align: center;
+  padding-top: 5px;
+}
+
+h3 {
+  margin-top: -5px;
+}
+

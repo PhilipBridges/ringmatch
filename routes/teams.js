@@ -43,7 +43,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
           team.players.id = req.user.id
           team.players.push(user)
           team.save()
-          user.update({ $set: { team: team }}).exec();
+          user.update({ $set: { team: team._id, teamname: name }}).exec();
           user.save()
           console.log(team)
           res.redirect("/teams")

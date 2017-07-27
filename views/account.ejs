@@ -1,7 +1,19 @@
 <% include partials/header %>
 
-<%= user.team %>
 <h2><%= currentUser.username%>'s account</h2>
+<div id="userTeam" class="container">
+<p>Member of <h3><%= user.teamname %></h3></p>
+</div>
+
+<div class="card card-inverse">
+  <img class="card-img" src="/img/<%=user.team.game.gameImg%>.jpg" alt="Card image">
+  <div class="card-img-overlay">
+    <h4 class="card-title">Card title</h4>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
 <% user.requests.forEach(function(request){%>
 <div class="container">
     <div class="row">
@@ -13,9 +25,9 @@
           <p><%=request.text%></p>
           <p> From <%= request.team.name %></p>
           <div id="requestBtn" class="row">
-             <form action="/<%=user.id%>/account/confirm" method="POST">
+             <form action="/<%=user.id%>/account/confirm/<%=request._id%>" method="POST">
              <input type="hidden" name="confirm" value="<%=request.team.id%>">
-             <button style="margin-top: 15px; margin-left: 35px" class="btn btn-primary btn-lg btn-success">Submit</button>
+             <button style="margin-top: 15px; margin-left: 35px" class="btn btn-primary btn-lg btn-success">Confirm</button>
           </form>
           <form action="/<%=user._id%>/account/confirm/<%=request._id%>?_method=DELETE" method="POST">
              <input type="hidden" name="confirm" value="<%=request.team.id%>">
@@ -28,5 +40,7 @@
     </p>
       <% }) %>
     </div>
+    
+    
 
 <% include partials/footer %>

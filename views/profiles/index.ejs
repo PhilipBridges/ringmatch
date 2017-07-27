@@ -1,13 +1,10 @@
 <% include ../partials/header %> 
 
 <div class="container">
-   <header class="jumbotron">
-       <div class="container">
-   </header>
    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
       <% profiles.forEach(function(profile){ %>
           <div class="col-md-3 col-sm-6">
-            <p><%= profile.name %></p>
+            <h3><%= profile.name %></h3>
               <div id="dexList">
                  <%= profile.game.gameName %>
                  <div class="thumbnail">
