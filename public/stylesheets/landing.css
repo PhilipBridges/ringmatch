@@ -1,5 +1,46 @@
+html,
 body {
-  font-family: 'Volkhov', serif;
+  height: 100%;
+  background-color: #233;
+  text-shadow: -1px 1px 3px rgba(142, 150, 150, .2);
+}
+body {
+  color: #fff;
+  text-align: center;
+}
+
+.card {
+  background-color: transparent;
+}
+
+#profRow {
+  margin: auto;
+  text-align: center
+}
+
+
+
+.btn {
+  margin: 3px;
+  color: white;
+}
+
+#landingRow{
+  display:block;
+}
+
+#btn3 {
+  background-color: #00325C;
+  border-color: #00325C;
+}
+
+.jumbotron {
+  text-align: center;
+  background: transparent;
+}
+
+.list-group-item {
+  text-align: center;
 }
 
 #navbar {
@@ -13,17 +54,23 @@ body {
 #crumb {
   width: 350px;
   display: block;
+  background-color: transparent;
 }
 
 .tawg {
   color: purple;
 }
 
+#icon {
+  text-shadow: rgb(48, 117, 165) 0px 0px 0px, rgb(49, 121, 171) 1px 1px 0px, rgb(51, 126, 177) 2px 2px 0px, rgb(53, 131, 184) 3px 3px 0px, rgb(55, 135, 190) 4px 4px 0px, rgb(57, 140, 197) 5px 5px 0px, rgb(59, 144, 203) 6px 6px 0px, rgb(61, 149, 209) 7px 7px 0px, rgb(62, 153, 216) 8px 8px 0px, rgb(64, 158, 222) 9px 9px 0px, rgb(66, 162, 229) 10px 10px 0px; font-size: 85px; color: rgb(255, 255, 255); height: 141px; width: 141px; line-height: 141px; border-radius: 41%; text-align: center; background-color: rgb(68, 167, 235)
+}
+
 #gameImg {
-  height: auto;
-  max-width: 100%;
+  max-width: 75%;
+  max-height: 75%;
   margin-top: 10px;
   border-radius: 15px;
+  background: transparent;
 }
 
 #dexList {
@@ -45,13 +92,14 @@ body {
 
 #commentText {
   background-color: rgba(55,95,25,.1);
-  border-radius: 99%;
+  margin: auto;
 }
 
 #addComment {
   margin: auto;
   display: block;
   width: 15%;
+  margin-bottom: 25px;
 }
 
 h2 {
@@ -62,8 +110,8 @@ h2 {
   margin-left: auto;
 }
 
-#showSel {
-  background-color: rgba(55,95,25,.3);
+#showSel li {
+  background: transparent;
   margin: 5px;
   text-align: center;
 }
@@ -77,5 +125,11 @@ h2 {
 
 h3 {
   margin-top: -5px;
+  margin-left: auto;
+  text-align: center;
+}
+
+#accountCard {
+  max-width: 25%
 }
 

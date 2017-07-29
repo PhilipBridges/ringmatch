@@ -102,7 +102,7 @@ router.delete("/:id/account/confirm/:request", middleware.isLoggedIn, function(r
       } else {
         user.requests.pull(req.params.request)
         user.save()
-        res.render("back")
+        res.redirect("back")
       }
     })
 });

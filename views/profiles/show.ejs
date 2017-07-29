@@ -1,35 +1,43 @@
 <% include ../partials/header %>
 
-<div class="container">
-  <div class="row">
-    <div id="showSel" class="col-md-3">
-        <div class="list-group">
-            <li class="list-group-item"> <h3><%= profile.name %></h3></li>
-            <li class="list-group-item"><%= profile.bio %></li>
-            <img id="gameImg" class="list-group-item" src="/img/<%=profile.game.gameImg%>.jpg">
-            </div>
+<div class="container col-lg-11 col-sm-3">
+<div class="row wow fadeIn col-12" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeIn;">
+  
+  <div class="col-lg-4 mt-6 mb-5 flex-center">
+      <img id="gameImg" src="https://d30y9cdsu7xlg0.cloudfront.net/png/17241-200.png" class="rounded-circle">
         </div>
+        <div class="col-lg-7 pb-1">
+            <h1 class="section-heading h1-responsive wow fadeIn" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;"><%= profile.name %></h1>
+            <p><%= profile.bio %></p>
+            <h1 class="h1-responsive text-center pt-2 pb-2">Contact</h1>
+        </div>
+        <div class="col-lg-4 col-9-sm">
+        <img id="ava" src="/img/<%=profile.game.gameImg%>.jpg" class="img-fluid rounded 1">
+        <a id="addPlayer" class="btn btn-primary" href="/profiles/<%=profile.id%>/add">Add Player</a>
+        </div>
+
+        <!--Second column-->
+        
+        <!--/Second column-->
+
     </div>
-    <div class="container">
-      <a id="addPlayer" class="btn btn-primary" href="/profiles/<%=profile.id%>/add">Add Player</a>
     </div>
     <div>
-      <div>
-        <a id="addComment" class="btn btn-success" href="/profiles/<%=profile._id%>/comments/new">Add New Comment</a>
+      <div class="col-12-xs">
+        <a id="addComment" class="btn btn-success" href="/profiles/<%=profile._id%>/comments/new">Comment</a>
       </div>
     </div>
     <% profile.comments.forEach(function(comment){%>
-    <div class="row">
+    <div class="row col-xs-9">
       <div class="col-md-12">
         <strong><%= profile.author.username%></strong>
         <p id="commentDate"><%= comment.date%> @ <%= comment.time%>
         </p>
-        <div id="commentText" class="well">
+        <div id="commentText" class="card col-6-md">
           <%=comment.text%>
         </div>
       </div>
     </div>
-      
     </p>
     <% }) %>
     <% if(currentUser && profile.author.id.equals(currentUser._id)){ %>
