@@ -1,4 +1,10 @@
 # ringmatch
 Literally my first site for practice
 
-that's it
+
+You can:
+Login/Logout
+Create Profiles
+Create Teams
+Request players to join your team with a message
+Can confirm/ignore requests
