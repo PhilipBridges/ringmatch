@@ -56,7 +56,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 router.get("/:id", function(req, res){
     Profile.findById(req.params.id).populate("comments").exec(function(err, foundProfile){
         if(err){
-            console.log(err);
+           console.log(err);
         } else {
             res.render("profiles/show", {profile: foundProfile});
         }
