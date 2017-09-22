@@ -12,6 +12,7 @@ router.get("/", middleware.findUser, function(req, res){
     Profile.find({}, function(err, allProfiles){ 
         if(err){
             console.log(err);
+            res.render("profiles/index")
         } else {
             res.render("profiles/index",{profiles:allProfiles, user: currentUser});
             console.log(req.user)

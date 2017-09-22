@@ -16,10 +16,16 @@ var express = require("express"),
     var profileRoutes = require("./routes/profiles");
     var commentRoutes = require("./routes/comments")
     var teamRoutes = require("./routes/teams")
+    
+    console.log(process.env.DATABASEURL)
 
-var promise = mongoose.connect('mongodb://localhost/ringmatch', {
-  useMongoClient: true,
-});
+// var promise = mongoose.connect('mongodb://localhost/ringmatch', {
+//   useMongoClient: true,
+// });
+mongoose.connect('mongodb://FonzieD:hutch1@ds147034.mlab.com:47034/ringmatch')
+process.env.databaseURL
+
+// mongodb://fonzied:hutch1@ds147034.mlab.com:47034/ringmatch
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
