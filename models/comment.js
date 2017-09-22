@@ -1,8 +1,9 @@
 var mongoose = require("mongoose");
-var moment = require('moment');
-var i = new Date;
+var i = new Date();
+var x = i.getTimezoneOffset() / 60
 var date = i.toDateString();
 var time = i.toLocaleTimeString();
+
 
 var commentSchema = mongoose.Schema({
     text: String,
