@@ -23,7 +23,7 @@ var express = require("express"),
 //   useMongoClient: true,
 // });
 mongoose.connect('mongodb://FonzieD:hutch1@ds147034.mlab.com:47034/ringmatch')
-process.env.databaseURL
+var url = process.env.databaseURL | "mongodb://localhost/ringmatch"
 
 // mongodb://fonzied:hutch1@ds147034.mlab.com:47034/ringmatch
 
