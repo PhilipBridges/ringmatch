@@ -22,10 +22,8 @@ var express = require("express"),
 // var promise = mongoose.connect('mongodb://localhost/ringmatch', {
 //   useMongoClient: true,
 // });
-mongoose.connect('mongodb://skele:wade@ds147034.mlab.com:47034/ringmatch')
+mongoose.connect('mongodb://Skele:wade@ds147034.mlab.com:47034/ringmatch')
 var url = process.env.databaseURL | "mongodb://localhost/ringmatch"
-
-// mongodb://fonzied:hutch1@ds147034.mlab.com:47034/ringmatch
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
