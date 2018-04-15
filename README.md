@@ -1,6 +1,7 @@
 # ringmatch
-Literally my first site for practice
+Literally my first site ever, made just for practice.
 
+Link: https://damp-ridge-41923.herokuapp.com/
 
 You can:
 
