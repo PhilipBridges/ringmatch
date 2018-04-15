@@ -17,12 +17,11 @@ var express = require("express"),
     var commentRoutes = require("./routes/comments")
     var teamRoutes = require("./routes/teams")
     
-    console.log(process.env.DATABASEURL)
-
 // var promise = mongoose.connect('mongodb://localhost/ringmatch', {
 //   useMongoClient: true,
 // });
-mongoose.connect('mongodb://Skele:wade@ds147034.mlab.com:47034/ringmatch')
+
+mongoose.connect(process.env.MLAB)
 var url = process.env.databaseURL | "mongodb://localhost/ringmatch"
 
 app.use(bodyParser.urlencoded({extended: true}));
